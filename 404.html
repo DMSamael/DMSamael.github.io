@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Сервер припинив роботу</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2' y='3' width='12' height='4' rx='1' fill='%23556274'/%3E%3Crect x='2' y='9' width='12' height='4' rx='1' fill='%23556274'/%3E%3Ccircle cx='11.5' cy='5' r='1' fill='%23f2b544'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#e9ecf1;--panel:#dde2ea;--rack:#c3cad6;--slot:#aab3c2;
+  --ink:#1f2836;--muted:#5a6678;--led:#d9921c;--glow:rgba(217,146,28,.35);
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#232b38;--panel:#2b3444;--rack:#364155;--slot:#28303f;
+    --ink:#e4e8ef;--muted:#98a3b5;--led:#f2b544;--glow:rgba(242,181,68,.45);
+  }
+}
+*,*::before,*::after{box-sizing:inherit;margin:0}
+html,body{height:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:400 1.0625rem/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",Ubuntu,sans-serif;
+  display:grid;place-items:center;padding:2rem 1.25rem;
+  -webkit-font-smoothing:antialiased;
+}
+main{
+  width:100%;max-width:34rem;
+  display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center;
+}
+.rack{width:7.5rem;height:auto;display:block}
+.rack .unit{fill:var(--rack)}
+.rack .slot{fill:var(--slot)}
+.rack .off{fill:var(--slot)}
+.rack .led{fill:var(--led);animation:standby 3.2s ease-in-out infinite}
+.rack .halo{fill:var(--glow);animation:standby 3.2s ease-in-out infinite}
+@keyframes standby{0%,100%{opacity:.25}50%{opacity:1}}
+h1{
+  font-size:clamp(1.5rem,4.5vw,2rem);line-height:1.2;
+  font-weight:650;letter-spacing:-.01em;margin-bottom:.75rem;
+  text-wrap:balance;
+}
+p{color:var(--muted);max-width:30em}
+p+p{margin-top:.5rem}
+.status{
+  display:inline-flex;align-items:center;gap:.5rem;margin-top:1.25rem;
+  font-size:.9375rem;color:var(--ink);
+  background:var(--panel);border-radius:999px;padding:.35rem .9rem .35rem .7rem;
+}
+.status i{width:.55rem;height:.55rem;border-radius:50%;background:var(--led);
+  box-shadow:0 0 0 .2rem var(--glow);animation:standby 3.2s ease-in-out infinite}
+@media (max-width:30rem){
+  main{grid-template-columns:1fr;gap:1.5rem;text-align:center}
+  .rack{margin:0 auto;width:6rem}
+  p{margin-inline:auto}
+}
+@media (prefers-reduced-motion:reduce){
+  .rack .led,.rack .halo,.status i{animation:none;opacity:1}
+}
+</style>
+</head>
+<body>
+<main>
+  <svg class="rack" viewBox="0 0 120 150" role="img" aria-label="Сервер у режимі очікування">
+    <rect class="unit" x="6" y="8" width="108" height="36" rx="6"/>
+    <rect class="slot" x="18" y="22" width="52" height="8" rx="2"/>
+    <circle class="off" cx="96" cy="26" r="4"/>
+
+    <rect class="unit" x="6" y="57" width="108" height="36" rx="6"/>
+    <rect class="slot" x="18" y="71" width="52" height="8" rx="2"/>
+    <circle class="halo" cx="96" cy="75" r="9"/>
+    <circle class="led" cx="96" cy="75" r="4"/>
+
+    <rect class="unit" x="6" y="106" width="108" height="36" rx="6"/>
+    <rect class="slot" x="18" y="120" width="52" height="8" rx="2"/>
+    <circle class="off" cx="96" cy="124" r="4"/>
+  </svg>
+
+  <div>
+    <h1>Вибачте, сервер припинив роботу</h1>
+    <p>У зв'язку з відсутністю активності сервер було зупинено.</p>
+    <div class="status" role="status"><i aria-hidden="true"></i>Режим очікування</div>
+  </div>
+</main>
+</body>
+</html>
